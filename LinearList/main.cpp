@@ -1,29 +1,23 @@
 //
 // Created by bruce on 7/10/22.
 //
-#include "ArrayList.h"
+#include "Chain.h"
 
 int main() {
     try {
-        arrayList<int> a = arrayList<int>( 100 );
-        if ( a.empty() )
-            std::cout << "empty" << std::endl;
-        else
-            std::cout << "not empty" << std::endl;
-        for ( int i = 0; i < a.capacity(); i++ ) {
-            a.element[ i ] = i;
-            a.listSize++;
+        chain<int> c = chain<int>( 100 );
+
+        for ( int i = 0; i < 100; i++ ) {
+            c.insert( i, i );
         }
-        if ( a.empty() )
-            std::cout << "empty" << std::endl;
-        else
-            std::cout << "not empty" << std::endl;
-        // std::cout << a << std::endl;
-        a.erase( 2 );
-        std::cout << a << std::endl;
-        std::cout << a.size() << std::endl;
-        a.insert( 2, 2 );
-        std::cout << a << std::endl;
+        std::cout << c.size() << std::endl;
+        std::cout << c.get( 33 ) << std::endl;
+        std::cout << c.indexOf( 32 ) << std::endl;
+        c.erase( 2 );
+        std::cout << c.size() << std::endl;
+        std::cout << c << std::endl;
+        c.insert( 2, 2 );
+        std::cout << c << std::endl;
     } catch ( illegalParameterValue e ) {
         e.outputMessage();
     }

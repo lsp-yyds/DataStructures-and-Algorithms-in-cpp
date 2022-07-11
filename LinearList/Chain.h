@@ -155,4 +155,70 @@ int chain<T>::indexOf( const T &theElement ) const {
         return index;
 }
 
+template <class T>
+void chain<T>::erase( int theIndex ) {
+    //删除索引为theIndex的元素
+    //若元素不存在则抛出异常
+    checkIndex( theIndex );
+
+    //索引有效，需找到要删除的元素节点
+    chainNode<T> *deleteNode;
+    if ( theIndex == 0 ) {
+        deleteNode = firstNode;
+        firstNode = firstNode->next;
+    } else {
+        //用指针p指向要删除节点的前驱节点
+        chainNode<T> *p = firstNode;
+
+        for ( int i = 0; i < theIndex - 1; i++ )
+            p = p->next;
+
+        deleteNode = p->next;
+        //删除deleteNode指向的节点
+        p->next = p->next->next;
+    }
+    listSize--;
+    delete deleteNode;
+}
+
+template <class T>
+void chain<T>::insert( int theIndex, const T &theElement ) {
+    //在索引为theIndex的位置上插入元素theElement
+    if ( theIndex < 0 || theIndex > theIndex ) {
+        //无效索引
+        std::ostringstream s;
+        s << "index = " << theIndex << " size = " << listSize;
+        throw illegalParameterValue( s.str() );
+    }
+
+    if ( theIndex == 0 ) {
+        //在表头插入
+        firstNode = new chainNode<T>( theElement, firstNode );
+    } else {
+        //寻找新元素的前驱
+        chainNode<T> *p = firstNode;
+        for ( int i = 0; i < theIndex - 1; i++ )
+            p = p->next;
+
+        //在p之后插入
+        p->next = new chainNode<T>( theElement, p->next );
+    }
+    listSize++;
+}
+
+template <class T>
+void chain<T>::output( std::ostream &out ) const {
+    //把链表放入输出流
+    for ( chainNode<T> *currentNode = firstNode; currentNode != NULL;
+          currentNode = currentNode->next )
+        out << currentNode->element << "  ";
+}
+
+//重载<<
+template <class T>
+std::ostream &operator<<( std::ostream &out, const chain<T> &x ) {
+    x.output( out );
+    return out;
+}
+
 #endif // DATASTRUCTURES_AND_ALGORITHMS_IN_CPP_CHAIN_H
