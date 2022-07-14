@@ -40,4 +40,20 @@ class illegalParameterValue {
     }
 };
 
+class illegalIndex {
+  private:
+    std::string message;
+
+  public:
+    illegalIndex()
+        : message( "Illegal index" ) {
+    }
+    illegalIndex( std::string theMessage ) {
+        message = theMessage;
+    }
+    void outputMessage() {
+        std::cout << message << std::endl;
+    }
+};
+
 #endif // DATASTRUCTURES_AND_ALGORITHMS_IN_CPP_MYEXCEPTIONS_H

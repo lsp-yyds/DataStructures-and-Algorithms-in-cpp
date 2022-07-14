@@ -11,6 +11,7 @@
 
 template <class T>
 class derivedArrayStack : private arrayList<T>, public stack<T> {
+  public:
     derivedArrayStack( int initialCapacity = 10 )
         : arrayList<T>( initialCapacity ) {
     }
@@ -22,7 +23,7 @@ class derivedArrayStack : private arrayList<T>, public stack<T> {
     }
     T &top() {
         try {
-            return get( arrayList<T>::size() - 1 );
+            return arrayList<T>::get( arrayList<T>::size() - 1 );
         } catch ( illegalIndex ) {
             throw stackEmpty();
         }
@@ -30,10 +31,10 @@ class derivedArrayStack : private arrayList<T>, public stack<T> {
     void pop() {
         if ( arrayList<T>::empty() )
             throw stackEmpty();
-        erase( arrayList<T>::size() - 1 );
+        arrayList<T>::erase( arrayList<T>::size() - 1 );
     }
     void push( const T &theElement ) {
-        insert( arrayList<T>::size(), theElement );
+        arrayList<T>::insert( arrayList<T>::size(), theElement );
     }
 };
 

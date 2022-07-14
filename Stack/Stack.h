@@ -8,7 +8,8 @@
 template <class T>
 class stack {
   public:
-    virtual ~stack();
+    virtual ~stack() {
+    }
     //返回true,当且进当栈为空
     virtual bool empty() const = 0;
     //返回栈中的元素个数
