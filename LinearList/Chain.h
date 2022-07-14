@@ -5,8 +5,8 @@
 #ifndef DATASTRUCTURES_AND_ALGORITHMS_IN_CPP_CHAIN_H
 #define DATASTRUCTURES_AND_ALGORITHMS_IN_CPP_CHAIN_H
 
-#include "IllegalParameterValue.h"
 #include "LinearList.h"
+#include "MyExceptions.h"
 #include <sstream>
 
 template <class T>

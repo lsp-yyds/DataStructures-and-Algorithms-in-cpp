@@ -5,10 +5,9 @@
 #ifndef DATASTRUCTURES_AND_ALGORITHMS_IN_CPP_ARRAYLIST_H
 #define DATASTRUCTURES_AND_ALGORITHMS_IN_CPP_ARRAYLIST_H
 
-#include "IllegalParameterValue.h"
 #include "LinearList.h"
+#include "MyExceptions.h"
 #include <algorithm>
-#include <exception>
 #include <iostream>
 #include <iterator>
 #include <ostream>
@@ -69,6 +68,11 @@ class arrayList : public linearList<T> {
     //其他方法
     int capacity() const {
         return arrayLength;
+    }
+    void reSet( int );
+    void set( int, const T & );
+    void clear() {
+        listSize = 0;
     }
 };
 
