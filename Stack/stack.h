@@ -19,7 +19,7 @@ class stack {
     //删除栈顶元素
     virtual void pop() = 0;
     //将元素theElement压入栈顶
-    virtual void push( const T &theElement ) = 0;
+    virtual void push(const T &theElement) = 0;
 };
 
 #endif // DATASTRUCTURES_AND_ALGORITHMS_IN_CPP_STACK_H

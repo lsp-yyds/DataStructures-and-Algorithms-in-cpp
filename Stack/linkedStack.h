@@ -5,8 +5,8 @@
 #ifndef DATASTRUCTURES_AND_ALGORITHMS_IN_CPP_LINKEDSTACK_H
 #define DATASTRUCTURES_AND_ALGORITHMS_IN_CPP_LINKEDSTACK_H
 
-#include "MyExceptions.h"
-#include "Stack.h"
+#include "../myExceptions.h"
+#include "stack.h"
 #include <iostream>
 
 template <class T>
@@ -18,10 +18,10 @@ struct chainNode {
     //方法
     chainNode() {
     }
-    chainNode( const T &element ) {
+    chainNode(const T &element) {
         this->element = element;
     }
-    chainNode( const T &element, chainNode<T> *next ) {
+    chainNode(const T &element, chainNode<T> *next) {
         this->element = element;
         this->next = next;
     }
@@ -36,7 +36,7 @@ class linkedStack : public stack<T> {
     int stackSize;
 
   public:
-    linkedStack( int initialCapacity = 10 ) {
+    linkedStack(int initialCapacity = 10) {
         stackTop = NULL;
         stackSize = 0;
     }
@@ -48,13 +48,13 @@ class linkedStack : public stack<T> {
         return stackSize;
     }
     T &top() {
-        if ( stackSize == 0 )
+        if (stackSize == 0)
             throw stackEmpty();
         return stackTop->element;
     }
     void pop();
-    void push( const T &theElement ) {
-        stackTop = new chainNode<T>( theElement, stackTop );
+    void push(const T &theElement) {
+        stackTop = new chainNode<T>(theElement, stackTop);
         stackSize++;
     }
 };
@@ -62,7 +62,7 @@ class linkedStack : public stack<T> {
 template <class T>
 linkedStack<T>::~linkedStack<T>() {
     //析构函数
-    while ( stackTop != NULL ) {
+    while (stackTop != NULL) {
         //删除栈顶节点
         chainNode<T> *nextNode = stackTop->next;
         delete stackTop;
@@ -73,7 +73,7 @@ linkedStack<T>::~linkedStack<T>() {
 template <class T>
 void linkedStack<T>::pop() {
     //删除栈顶节点
-    if ( stackSize == 0 )
+    if (stackSize == 0)
         throw stackEmpty();
 
     chainNode<T> *nextNode = stackTop->next;
