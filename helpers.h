@@ -28,6 +28,18 @@ namespace helpers {
         a = temp;
     }
 
+    template <class T>
+    void changeArrayIndex0to1(T *&a, int length) {
+        int newLength = length + 1;
+        T *temp = new T[newLength];
+
+        for (int i = 0; i < length; i++)
+            temp[i + 1] = a[i];
+
+        delete[] a;
+        a = temp;
+    }
+
     int *generateRandomArray(int n, int rangeL, int rangeR) {
         assert(rangeL <= rangeR);
         int *arr = new int[n];

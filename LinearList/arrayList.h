@@ -12,6 +12,7 @@
 #include <exception>
 #include <iostream>
 #include <iterator>
+#include <sstream>
 
 template <class T>
 class arrayList : public linearList<T> {
@@ -55,6 +56,9 @@ class arrayList : public linearList<T> {
     void set(int, const T &);
     void clear() {
         listSize = 0;
+    }
+    T *elementArray() const {
+        return element;
     }
 };
 
