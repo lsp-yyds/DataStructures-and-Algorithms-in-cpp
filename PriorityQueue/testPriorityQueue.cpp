@@ -17,10 +17,11 @@ int main(int argc, char const *argv[]) {
     arr[6] = 87;
     arr[7] = 32;
 
-    helpers::changeArrayIndex0to1(arr, 8);
     maxHeap<int> heap = maxHeap<int>(8);
-    heap.initialize(arr, 8);
-    std::cout << heap << std::endl;
-    // heap.testPrint();
+    for (int i = 0; i < 8; ++i) {
+        heap.push(arr[i]);
+    }
+
+    heap.testPrint();
     return 0;
 }

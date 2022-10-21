@@ -6,11 +6,6 @@
 
 int main(int argc, char const *argv[]) {
 
-    //    arrayList<int> arr = arrayList<int>(10);
-    //    for (int i = 0; i < arr.capacity(); ++i) {
-    //        arr.insert(i, i + 1);
-    //    }
-    //
     int n = 10000;
     // int *arr1 = helpers::generateNearlyOrderedArray(n, 10);
     int *arr1 = helpers::generateRandomArray(n, 0, n);
@@ -23,6 +18,7 @@ int main(int argc, char const *argv[]) {
     int *arr8 = helpers::copyIntArray(arr1, n);
     int *arr9 = helpers::copyIntArray(arr1, n);
     int *arr10 = helpers::copyIntArray(arr1, n);
+    int *arr11 = helpers::copyIntArray(arr1, n);
 
     helpers::testSort("InsertionSort", sorting::insertionSort, arr1, n);
     helpers::testSort("InsertionSortImproved", sorting::insertionSortImproved,
@@ -35,13 +31,8 @@ int main(int argc, char const *argv[]) {
     helpers::testSort("BubbleSort2", sorting::bubbleSortImproved, arr7, n);
     helpers::testSort("QuickSort", sorting::quickSort, arr8, n);
     helpers::testSort("SectionSort", sorting::sectionSort, arr9, n);
-    helpers::testSort("HeapSort", sorting::heapSort, arr10, n);
-
-    //    int arr[] = {27, 13, 49, 38, 76, 49, 65, 97};
-    //    sorting::shellSort(arr, 8);
-    //    for (int i = 0; i < 8; ++i) {
-    //        std::cout << arr[i] << " ";
-    //    }
+    helpers::testSort("MergeSort", sorting::mergeSort, arr10, n);
+    helpers::testSort("HeapSort", sorting::heapSort, arr11, n);
 
     delete[] arr1;
     delete[] arr2;
@@ -52,6 +43,7 @@ int main(int argc, char const *argv[]) {
     delete[] arr7;
     delete[] arr8;
     delete[] arr9;
+    delete[] arr10;
 
     return 0;
 }

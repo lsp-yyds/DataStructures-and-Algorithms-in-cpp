@@ -6,6 +6,8 @@
 #define DATASTRUCTURES_AND_ALGORITHMS_IN_CPP_SORT_H
 
 #include <algorithm>
+#include <cassert>
+#include <ctime>
 
 #include "../PriorityQueue/maxHeap.h"
 #include "../Search/search.h"
@@ -196,7 +198,6 @@ namespace sorting {
 
     template <class T>
     void quickSort(T arr[], int n) {
-        srand(time(NULL));
         quickSortPartition(arr, 0, n - 1);
     }
 
@@ -224,15 +225,63 @@ namespace sorting {
     template <class T>
     void heapSort(T arr[], int n) {
         maxHeap<T> heap = maxHeap<T>(n);
-        for (int i = 1; i <= n; i++) {
+        for (int i = 0; i < n; i++) {
             heap.push(arr[i]);
         }
-        // heap.initialize(arr, n);
 
-        for (int i = n; i > 0; i--) {
+        for (int i = n - 1; i >= 0; i--) {
             arr[i] = heap.top();
             heap.pop();
         }
+    }
+
+    /**
+     * 归并排序
+     * 算法稳定性:稳定
+     * 平均时间复杂度:O(nlogn)
+     */
+    // 将arr[l...mid]和arr[mid+1...r]两部分进行归并
+    template <typename T>
+    void merge(T arr[], int startOfFirst, int endOfFirst, int endOfSecond) {
+
+        T temp[endOfSecond - startOfFirst + 1];
+        for (int i = startOfFirst; i <= endOfSecond; i++)
+            temp[i - startOfFirst] = arr[i];
+
+        int i = startOfFirst, j = endOfFirst + 1;
+        for (int k = startOfFirst; k <= endOfSecond; k++) {
+            if (i > endOfFirst) {
+                arr[k] = temp[j - startOfFirst];
+                j++;
+            } else if (j > endOfSecond) {
+                arr[k] = temp[i - startOfFirst];
+                i++;
+            } else if (temp[i - startOfFirst] < temp[j - startOfFirst]) {
+                arr[k] = temp[i - startOfFirst];
+                i++;
+            } else {
+                arr[k] = temp[j - startOfFirst];
+                j++;
+            }
+        }
+    }
+
+    // 递归使用归并排序，对arr[l ... r]的范围进行排序
+    template <typename T>
+    void mergeSort(T arr[], int l, int r) {
+
+        if (l >= r)
+            return;
+
+        int mid = (l + r) / 2; // 当l和r较大时可能会发生溢出错误
+        mergeSort(arr, l, mid);
+        mergeSort(arr, mid + 1, r);
+        merge(arr, l, mid, r);
+    }
+
+    template <typename T>
+    void mergeSort(T arr[], int n) {
+        mergeSort(arr, 0, n - 1);
     }
 } // namespace sorting
 
