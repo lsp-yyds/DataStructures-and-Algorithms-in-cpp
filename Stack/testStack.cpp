@@ -3,28 +3,18 @@
 //
 
 #include "arrayStack.h"
+#include "bracketCheck.h"
 #include "derivedArrayStack.h"
 #include "linkedStack.h"
 
 int main() {
 
-    // derivedArrayStack<int> s( 10 );
-    // arrayStack<int> s( 10 );
-    linkedStack<int> s(100);
-    if (s.empty())
-        std::cout << "empty" << std::endl;
-    else
-        std::cout << "not empty" << std::endl;
+    std::string s = "((())(())";
 
-    for (int i = 0; i < 10; ++i) {
-        s.push(i);
-    }
-
-    if (s.empty())
-        std::cout << "empty" << std::endl;
+    if (!bracketCheck(s, (int) s.length()))
+        printf("Brackets do not match!!!");
     else
-        std::cout << "not empty" << std::endl;
-    std::cout << s.size() << std::endl;
+        printf("haha");
 
     return 0;
 }

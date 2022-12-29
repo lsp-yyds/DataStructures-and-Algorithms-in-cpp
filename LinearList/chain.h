@@ -6,26 +6,9 @@
 #define DATASTRUCTURES_AND_ALGORITHMS_IN_CPP_CHAIN_H
 
 #include "../myExceptions.h"
+#include "chainNode.h"
 #include "linearList.h"
 #include <sstream>
-
-template <class T>
-struct chainNode {
-    //数据成员
-    T element;
-    chainNode<T> *next;
-
-    //方法
-    chainNode() {
-    }
-    chainNode(const T &element) {
-        this->element = element;
-    }
-    chainNode(const T &element, chainNode<T> *next) {
-        this->element = element;
-        this->next = next;
-    }
-};
 
 template <class T>
 class chain : public linearList<T> {
